@@ -3,7 +3,7 @@ Pull requests to update any of this material are welcome and encouraged.
 
 ## Links Within this Repo
 
-- Brief C [development advice](c.md).
+- Brief C [development requirements](c.md).
 - `git` and `github` [high-level, guidelines](github.md).
 - You're training to be a software engineer, so you *must* treat programming as a  [craft](https://www2.seas.gwu.edu/~gparmer/posts/2016-03-07-code-craftsmanship.html).
 	An exceedingly important part of this is thinking about *how others will read your code*.
