@@ -1,14 +1,14 @@
 Pull requests to update any of this material are welcome and encouraged.
 
-
 ## Links Within this Repo
 
 - Brief C [development requirements](c.md).
 - `git` and `github` [high-level, guidelines](github.md).
-- You're training to be a software engineer, so you *must* treat programming as a  [craft](https://www2.seas.gwu.edu/~gparmer/posts/2016-03-07-code-craftsmanship.html).
-	An exceedingly important part of this is thinking about *how others will read your code*.
-	Read about [style](style.md), and understand a mental model for [how to write readable code](https://github.com/gwsystems/composite/blob/ppos/doc/style_guide/composite_coding_style.pdf).
+- You're training to be a software engineer, so you _must_ treat programming as a [craft](https://www2.seas.gwu.edu/~gparmer/posts/2016-03-07-code-craftsmanship.html).
+  An exceedingly important part of this is thinking about _how others will read your code_.
+  Read about [style](style.md), and understand a mental model for [how to write readable code](https://github.com/gwsystems/composite/blob/ppos/doc/style_guide/composite_coding_style.pdf).
 - Notes on [debugging](debugging.md) intelligently.
+- A Reference for the [GNU Debugger](gdb.md).
 - Notes on how to think about [testing](testing.md).
 - Properly using an [editor](https://github.com/gwu-cs-os/gwu_os_editors).
 
