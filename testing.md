@@ -3,9 +3,9 @@
 Untested code must be assumed wrong, simply put.
 You can never make the assumption that any part of your code works that you haven't tested, no matter how simple.
 "It should work" is something that the instructional staff will never believe, and should be an indication of hard debugging ahead if you find yourself uttering it.
-"It should work" is a huge assumption with a builtin recognition that you *aren't going to test the assumption*.
+"It should work" is a huge assumption with a builtin recognition that you _aren't going to test the assumption_.
 Put another way, it is a recognition that you're about to waste a lot of your own time.
-So I want to make it clear that you *must* test all parts of your own code.
+So I want to make it clear that you _must_ test all parts of your own code.
 If your grade is lower because a branch doesn't quite do what it is supposed to, "but it is just a small error" not only is completely incorrect, but demonstrates a complete lack of understanding of the fundamental importance and purpose of testing.
 
 The job of a library, an operating system, or a piece of utility code is to make the programmer able to perform some operation, or to make the operation easier.
