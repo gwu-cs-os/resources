@@ -18,33 +18,33 @@ gdb --args a.out arg1 arg2
 
 ## GDB Shell Basics
 
-- Getting to the Shell
-  - Ctrl+C pauses execution and escapes to the shell
-  - `continue` resumes program execution
-  - `run <args>` reruns the program
-- Figuring out commands
-  - `help` browses documentation.
-  - `apropos <search_term>` searches for commands relating to your search term
-  - Hitting tab after typing a partial command or argument expands to a list of possible commands or arguments
-- Saving keystrokes
-  - Hitting enter re-runs the last command
-  - GDB only requires only as many characters as are needed to uniquely identify a command.
-  - This reference shows the terse forms of commands
+-   Getting to the Shell
+    -   Ctrl+C pauses execution and escapes to the shell
+    -   `continue` resumes program execution
+    -   `run <args>` reruns the program
+-   Figuring out commands
+    -   `help` browses documentation.
+    -   `apropos <search_term>` searches for commands relating to your search term
+    -   Hitting tab after typing a partial command or argument expands to a list of possible commands or arguments
+-   Saving keystrokes
+    -   Hitting enter re-runs the last command
+    -   GDB only requires only as many characters as are needed to uniquely identify a command.
+    -   This reference shows the terse forms of commands
 
 ## Exploring the System
 
 ### Exploring Globals
 
-- `i va <regex>` - list global and static variables
-- `i fu <regex>` - lists functions
+-   `i va <regex>` - list global and static variables
+-   `i fu <regex>` - lists functions
 
 ### Inspecting State
 
-- `p <variable_name>` - get value of variable
-- `p array[0]` - show element in array (or array decayed to pointer)
-- `p my_ptr` - shows address pointer points to
-- `p *my_ptr` - shows contents of the address pointed to
-- `p *my_ptr@len` - show array that has decayed into a pointer
+-   `p <variable_name>` - get value of variable
+-   `p array[0]` - show element in array (or array decayed to pointer)
+-   `p my_ptr` - shows address pointer points to
+-   `p *my_ptr` - shows contents of the address pointed to
+-   `p *my_ptr@len` - show array that has decayed into a pointer
 
 So for this example:
 
@@ -61,8 +61,8 @@ p *my_array@10
 
 ### Inspecting Types
 
-- `wha <variable_name>` - get type of variable
-- `pt <type_name>` - inspect layout of complex types like structs
+-   `wha <variable_name>` - get type of variable
+-   `pt <type_name>` - inspect layout of complex types like structs
 
 Note: To view structs cleanly, run `set print pretty`
 
@@ -70,47 +70,47 @@ Note: To view structs cleanly, run `set print pretty`
 
 ### Setting and Clearing Breakpoints
 
-- `b` - List Breakpoints
-- `b <function_name>|<filename:line_number>|*<address>` - Set breakpoints
-- `cle <function_name>|<filename:line_number>|*<address>` - Clear breakpoint
+-   `b` - List Breakpoints
+-   `b <function_name>|<filename:line_number>|*<address>` - Set breakpoints
+-   `cle <function_name>|<filename:line_number>|*<address>` - Clear breakpoint
 
 Examples
 
-- `b *0x7ffff70871c0`
-- `b printf`
-- `b printf.c:20`
+-   `b *0x7ffff70871c0`
+-   `b printf`
+-   `b printf.c:20`
 
 ### Inspecting the Stack
 
-- `bt` - Display a stack trace
-- `fr <n>` - Select a frame in the stack trace
-- `i frame` - Display info on the selected frame
-- `i args` - Display arguments to the selected frame
-- `i lo` - Display local variables in the selected frame
-- `i reg` - Display registers as of the selected frame
+-   `bt` - Display a stack trace
+-   `fr <n>` - Select a frame in the stack trace
+-   `i frame` - Display info on the selected frame
+-   `i args` - Display arguments to the selected frame
+-   `i lo` - Display local variables in the selected frame
+-   `i reg` - Display registers as of the selected frame
 
 ### Advancing from Breakpoint
 
-- `next <n>` - step forward n lines in the current function
-- `step` - step into a function
+-   `next <n>` - step forward n lines in the current function
+-   `step` - step into a function
 
 ### Enabling TUI: a Curses based Terminal UI
 
-- Useful if using `next` and `step` to follow control flow:
-- ctrl-x ctrl-a to show
-- ctrl-x ctrl-a to hide
-- PGUP and PGDOWN to navigate
+-   Useful if using `next` and `step` to follow control flow:
+-   ctrl-x ctrl-a to show
+-   ctrl-x ctrl-a to hide
+-   PGUP and PGDOWN to navigate
 
 ## Watchpoints
 
-- `watch <variable_name>` - Break on change to a variable
+-   `watch <variable_name>` - Break on change to a variable
 
 When the variable changes, a breakpoint fires, and the old and new state of the variable is printed
 
 ## Threads
 
-- `info threads` - show all threads
-- `thread <thread_no>` - switch debugger to a specific thread
+-   `info threads` - show all threads
+-   `thread <thread_no>` - switch debugger to a specific thread
 
 ## xv6 Specific stuff
 
@@ -146,5 +146,5 @@ By default, GDB is configured to debug the xv6 kernel. The process for debugging
 
 ## Additional Resources
 
-- [Official Debugging with GDB Book](https://sourceware.org/gdb/onlinedocs/gdb/)
-- [YouTube Tutorial](https://www.youtube.com/watch?v=bWH-nL7v5F4&t=55s)
+-   [Official Debugging with GDB Book](https://sourceware.org/gdb/onlinedocs/gdb/)
+-   [YouTube Tutorial](https://www.youtube.com/watch?v=bWH-nL7v5F4&t=55s)
