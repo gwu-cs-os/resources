@@ -24,7 +24,7 @@ gdb --args a.out arg1 arg2
   - `run <args>` reruns the program
 - Figuring out commands
   - `help` browses documentation.
-  - `apropos <search_term>` searches
+  - `apropos <search_term>` searches for commands relating to your search term
   - Hitting tab after typing a partial command or argument expands to a list of possible commands or arguments
 - Saving keystrokes
   - Hitting enter re-runs the last command
