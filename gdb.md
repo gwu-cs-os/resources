@@ -146,5 +146,5 @@ By default, GDB is configured to debug the xv6 kernel. The process for debugging
 
 ## Additional Resources
 
-- Good YouTube tutorial https://www.youtube.com/watch?v=bWH-nL7v5F4&t=55s
-- Debugging with GDB Book https://sourceware.org/gdb/onlinedocs/gdb/
+- [Official Debugging with GDB Book](https://sourceware.org/gdb/onlinedocs/gdb/)
+- [YouTube Tutorial](https://www.youtube.com/watch?v=bWH-nL7v5F4&t=55s)
