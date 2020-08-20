@@ -4,14 +4,14 @@
 
 ### Debugging Unoptimized Code
 
-```c
+```sh
 gcc -g -Og main.c
 gdb a.out
 ```
 
 ### Debugging Optimized Code
 
-```c
+```sh
 gcc -g -O3 main.c
 gdb --args a.out arg1 arg2
 ```
@@ -55,7 +55,7 @@ int *my_array = (int *) malloc(my_array_len * sizeof(int));
 
 You would enter:
 
-```
+```c
 p *my_array@10
 ```
 
