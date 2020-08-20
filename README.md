@@ -11,6 +11,7 @@ Pull requests to update any of this material are welcome and encouraged.
 -   A Reference for the [GNU Debugger](gdb.md).
 -   Notes on how to think about [testing](testing.md).
 -   Properly using an [editor](https://github.com/gwu-cs-os/gwu_os_editors).
+-   How to effectively search and use [man(ual) pages](manpages.md)
 
 **Resources associated with the class include:**
 
