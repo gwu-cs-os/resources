@@ -11,6 +11,7 @@ Pull requests to update any of this material are welcome and encouraged.
 -   How to properly set [GCC flags to optimize your code](gcc.md)
 -   How to automate building C projects using [GNU Make](make.md)
 -   Notes on how to think about [testing](testing.md).
+-   [Ubuntu Essentials](ubuntu.md)
 
 **Resources associated with the class include:**
 
