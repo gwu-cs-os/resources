@@ -1,4 +1,4 @@
-# Introduction
+# Man(ual) Pages
 
 Google is indeed one of the most important tools of any modern software engineer, but generally, it is generally not the best place to start for specialized technical questions. Within specific areas of knowledge, there are often specialized references that are more context appropriate. For example, the canonical reference for web technologies is the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Reference). In fact, [even Google links to these docs](https://blog.mozilla.org/blog/2017/10/18/mozilla-brings-microsoft-google-w3c-samsung-together-create-cross-browser-documentation-mdn/)! As such, most practicing web developers have this resource open at all times.
 
