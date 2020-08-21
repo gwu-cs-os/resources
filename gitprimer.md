@@ -1,6 +1,20 @@
 # Git Primer
 
-Source Configuration Management (SCM) is critical to managing the complexity of developing and maintaining software. In this course we will be using [git](https://git-scm.com/) for SCM and [github.com](github.com) as our cloud-based host for both backup and submission. The terminology and examples presented in this document will be defined in terms of `git` .
+Software Engineering is a team sport. These teams are often globally distributed, and in the open source world, many of the developers that collaborate do not actually know one another personally. How does this collaboration work? After all, in any given software project, individual developers fix individual bugs and implement features in parallel. How does one test to make sure that these changed written in parallel don’t accidentally interfere with each other?
+
+This problem is the domain of Source Configuration Management (SCM) tools, which track the individual work performed by different developers, and provide tools for reviewing changes, resolving conflicts, and merging changes into the main branch (typically called master).
+
+Outside of software, you might have had experience with collaborative cloud-based document editors such as Google Docs, and in some ways this is similar. Multiple people are working together in a shared context, but this shared context is provided by running on centralized infrastructure in the cloud. Everyone’s computer is tethered to the cloud, and collaboration breaks down when Internet connectivity goes out. Over the years, there have been several centralized SCM systems that worked somewhat in this way.
+
+In contrast, `git` works quite a bit different form these sorts of tools because it is a distributed SCM. When you work in `git`, there is typically a shared repository, often published to GitHub, but developers don’t ever actually code directly against the GitHub repository.
+
+Rather, they ‘checkout’ the repository into a local copy on their local filesystem, and then work directly against that local copy. From the point of view of the local git repository, the GitHub URL that we cloned from is the ‘origin’ repository. That is a relationship that allows up to ‘pull’ changes from the origin down to our local copy or ‘push’ changes from our local copy back to the origin repository.
+
+Keep in mind that all this pushing and pulling is manual. If Carlos and Karen are both working on their local copies of the origin repository and they never push these changes back up to the origin server, they have no idea about each other’s changes, and this will likely result in a ‘merge conflict’.
+
+In this course, we will use `git` for SCM. There is of course particular `git` terminology that you will need to familiarize yourself and a number of commands that you will need to become proficient with in order to use `git`. Over the course of the semester, the main challenge you will have is learning how to remotely collaborate with others using a git workflow. This will take a bit of pushing and pulling, along with many other topics. Likely, you will end up with messy merge conflicts, and you may even end up overwriting or losing work. This frustration is an essential part of learning git, the technology that powers the modern open-source world.
+
+This section will list the most fundamental terminology and commands that you will need to understand `git` and be able to collaborate with others.
 
 # Terminology
 
@@ -66,13 +80,13 @@ If a command contains a label in angled brackets, _i.e._ `<a_label>`, the label 
 
 The following command will list all of the top level `git` commands for reference:
 
-```
+```sh
 git –help
 ```
 
 To examine man page reference of each specific `git` command, follow the command with the `–help` parameter:
 
-```
+```sh
 git <command> –help
 ```
 
@@ -80,13 +94,13 @@ git <command> –help
 
 To create a new repository in the current directory:
 
-```
+```sh
 git init
 ```
 
 To clone a remote repository to your local machine:
 
-```
+```sh
 git clone <url>
 ```
 
@@ -94,7 +108,7 @@ git clone <url>
 
 To list both the remote repositories and their associated URL’s:
 
-```
+```sh
 git remote -v
 ```
 
@@ -102,14 +116,14 @@ git remote -v
 
 To list the active branch in the current working directory:
 
-```
+```sh
 git branch
 ```
 
 To create a new branch with the name `<branchname>` that is a copy of
 the active branch:
 
-```
+```sh
 git branch <branchname>
 ```
 
@@ -117,13 +131,13 @@ git branch <branchname>
 
 To stage a single file with the name `<filename>` for commit:
 
-```
+```sh
 git add <filename>
 ```
 
 To stage one or more files at the path `<pathspec>` for commit:
 
-```
+```sh
 git add <pathspec>
 ```
 
@@ -135,7 +149,7 @@ To commit files to your local repository that have been added using `git add` us
 
 To commit the current set of staged files:
 
-```
+```sh
 git commit
 ```
 
@@ -143,7 +157,7 @@ _Note:_ The system will open the associated text editor for the user to add a co
 
 To commit the current set of staged files with the associated commit message `<commitmessage>`:
 
-```
+```sh
 git commit -m “ <commitmessage>”
 ```
 
@@ -151,25 +165,25 @@ git commit -m “ <commitmessage>”
 
 To overwrite a single file in the working directory with the name `<filename>` in the local repository:
 
-```
+```sh
 git checkout <filename>
 ```
 
 To overwrite all files from a path in the working directory with all files at the path `<pathspec>` in the local repository:
 
-```
+```sh
 git checkout <pathspec>
 ```
 
 To overwrite all files and folders in the working directory with the state of the branch named `<branch>` in the local repository:
 
-```
+```sh
 git checkout <branch>
 ```
 
 To copy the state of the current branch into a new branch named `<new_branch>` in the local repository:
 
-```
+```sh
 git checkout -b <new_branch>
 ```
 
@@ -177,13 +191,13 @@ git checkout -b <new_branch>
 
 To request the local `git` server transmit the state of the current branch to the remote `origin` server:
 
-```
+```sh
 git push
 ```
 
 To request the local `git` server transmit the state of the branch named `branch` to the remote server named `remote`:
 
-```
+```sh
 git push <remote> <branch>
 ```
 
@@ -191,13 +205,13 @@ git push <remote> <branch>
 
 To request the local `git` server receive the state of the current branch from the remote `origin` server:
 
-```
+```sh
 git pull
 ```
 
 To request the local `git` server receive the state of the branch named `branch` from the remote server named `remote`:
 
-```
+```sh
 git pull <remote> <branch>
 ```
 
@@ -205,31 +219,50 @@ git pull <remote> <branch>
 
 ## Cloning a new repository
 
-```
+```sh
 git clone <url>
 ```
 
 ## Update a file and commit to the current branch of the local repository
 
-```
+```sh
 git add <filename>
 git commit -m “ <commitmessage>”
 ```
 
 ## Update a file and commit to the current branch of both local and `origin` repositories
 
-```
+```sh
 git add <filename>
 git commit -m “ <commitmessage>”
 git push
 ```
 
-## Pull (and merge) remote changes with your local changes from the `origin` ’s `master` branch
+## Pull (and merge) remote changes with your local changes from the `origin` `master` branch
 
-```
+```sh
 git pull origin master
 ```
+
+## Review
+
+1.  Which `git` command creates a repository on your local machine?
+
+2.  Which `git` command copies a repository from a remote git server onto your local machine and creates a reference to that remote as the `origin`?
+
+3.  If you commit one or more files, what repositories are automatically updated?
+
+4.  What steps are necessary to ensure that a local repository is synchronized with a remote repository?
+
+5.  What steps are necessary to ensure that a remote repository is synchronized with a local repository?
+
+6.  When you checkout a file from a repository, what repository does the file come from?
 
 # Resources
 
 -   [Official git docs](https://git-scm.com/doc)
+-   [Udacity Course on git](https://www.udacity.com/course/version-control-with-git--ud123)
+-   [git cheat sheet](https://services.github.com/on-demand/downloads/github-git-cheat-sheet.pdf)
+-   [git saving changes](https://www.atlassian.com/git/tutorials/saving-changes)
+-   [git undoing changes](https://www.atlassian.com/git/tutorials/undoing-changes)
+-   [git reference](https://git-scm.com/docs)
