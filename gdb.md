@@ -148,3 +148,5 @@ By default, GDB is configured to debug the xv6 kernel. The process for debugging
 
 -   [Official Debugging with GDB Book](https://sourceware.org/gdb/onlinedocs/gdb/)
 -   [YouTube Tutorial](https://www.youtube.com/watch?v=bWH-nL7v5F4&t=55s)
+-   [Learning C with gdb](https://www.recurse.com/blog/5-learning-c-with-gdb)
+-   [8 gdb tricks you should know](https://blogs.oracle.com/linux/8-gdb-tricks-you-should-know-v2)

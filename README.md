@@ -17,11 +17,23 @@ Pull requests to update any of this material are welcome and encouraged.
 
 -   C development issues: [visibility and includes](https://www.youtube.com/watch?v=P8g4B9c0i8A&t=490s), [generic data-structures](https://www.youtube.com/watch?v=AUYYN3mqSGU&t=3s), and [polymorphism](https://www.youtube.com/watch?v=bZO0A1tj2MI)
 
-## External Links on C Development
+## External Links
 
 Add more links here via Pull Request!
 
+### C Development
+
+-   [_Modern C_ by Jens Gustedt](https://modernc.gforge.inria.fr/#orga1f30a5)
 -   The [c build process](https://blog.feabhas.com/2012/06/the-c-build-process/)
 -   [Linker scripts](http://software-dl.ti.com/ccs/esd/documents/sdto_cgt_Linker-Command-File-Primer.html) and how to place programs explicitly in memory.
--   [All things](https://github.com/nhivp/Awesome-Embedded) low-level and embedded.
 -   Don't implement your [own spinlock](https://matklad.github.io//2020/01/02/spinlocks-considered-harmful.html) if you can avoid it!
+-   [Understanding C by learning assembly](https://www.recurse.com/blog/7-understanding-c-by-learning-assembly)
+-   [Tiny C Games](https://github.com/superjer/tinyc.games) that run on Mac, Linux, Windows
+-   [comp.lang.c FAQ](http://c-faq.com/)
+-   [SEI CERT C Coding Standard](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard)
+
+### Related Topics
+
+-   [All things](https://github.com/nhivp/Awesome-Embedded) low-level and embedded.
+-   [The Night Watch: a satirical look at Systems Programming](https://scholar.harvard.edu/files/mickens/files/thenightwatch.pdf)
+-   [Three Tribes of Programming](https://josephg.com/blog/3-tribes/)
