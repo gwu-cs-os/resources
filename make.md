@@ -16,6 +16,68 @@ You will need at least a basic understanding of `Makefile` syntax to succeed in 
 -   `make`
 -   `make clean`
 
+## `make` Rules
+
+Makefiles are essentially shell scripts that track dependencies
+
+They are composed of `rules`, which have:
+
+-   A unique name
+
+-   Dependencies on other rules or files.
+
+-   A block of shell commands they execute, indented by a tab (Spaces cause a syntax error!)
+
+```makefile
+rule_name: dependency_a dependency_b
+    commandA
+    commandB
+```
+
+## `make` Examples
+
+`make all` runs `build`, which compiles the `main.c` file:
+
+```makefile
+clean:
+    rm -rf a.out
+
+build: main.c
+    @gcc main.c
+
+all: build
+```
+
+### Dependency Tracking
+
+When a rule executes, it first executes all dependencies from left to right. Consider the following example. As much as possible, a Makefile seeks to minimize unnecessary work. It does this by inspecting the last changed timestamps of files that the rule depends upon. Thus, the `build` rule only runs if `main.c` has changed since the Makefile was last run. This property is transitive.
+
+```makefile
+clean:
+    rm -rf a.out
+
+before:
+    echo "Before"
+
+after:
+    echo "After"
+
+silent:
+    @echo "After"
+
+build: main.c
+    @gcc main.c
+
+all: before build after silent
+```
+
+Assuming that `a.out` exists and `main.c` has had no changes since the execution of the Makefile, running `make all` would run as follows:
+
+1.  Execute the before rule, printing "Before"
+2.  Skip the build rule because `a.out` is already up to date
+3.  Execute the after rule, printing "After"
+4.  Execute the silent rule, but nothing is printed, as the `@` prepended to the command made it silent.
+
 ## References
 
 -   [Gabe's YouTube Tutorial: Makefiles: 95% of what you need to know](https://www.youtube.com/watch?v=DtGrdB8wQ_8)
