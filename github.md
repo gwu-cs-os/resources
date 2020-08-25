@@ -62,6 +62,7 @@ An incomplete list of commands that you can use with git include:
     If you find that you're somewhat accidentally developing a new feature, or fixing a new bug, but have a bunch of unstaged changes on the current branch, you can `stash` them, create a new branch, `stash pop` the changes into the new branch.
     I'm sure there are other ways to do this, but this example at the very least demonstrates how `stash` can be used to delay a current set of changes.
 -   `git rebase` enables you to update a branch to an updated master, and to "squash" multiple commits, and clean up your commit history.
+    I list rebase here for completeness, but know that you should not squash commits for this class as we'll look at your complete commit history.
     When the master progresses beyond the point where your branch split from it, you generally want to fast-forward merge your changes onto the new master.
     `git rebase master` is your friend here.
     It is generally superior to `git merge` as it maintains a cleaner (linear) history.
