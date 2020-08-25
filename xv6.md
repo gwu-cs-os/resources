@@ -1,5 +1,30 @@
 # `xv6` hints and tricks
 
+To run `xv6`, you need `qemu` installed.
+If you aren't running Linux, then you might execute Linux in a virtual machine (e.g. using Virtual Box or VMWare Workstation), and `qemu` within Linux.
+I believe others have gotten `qemu` executing in OSX as well (but it takes installing a cross-compiled ELF-version of `gcc`), so discuss on Piazza if you're interested in that.
+
+```
+$ git clone https://github.com/gparmer/gwu-xv6.git xv6
+$ cd xv6
+$ make qemu
+```
+
+Note that the `xv6` book has a great overview of the design of the *entire* system.
+Please use it [as a resource](https://pdos.csail.mit.edu/6.828/2012/xv6/xv6-rev7.pdf) if you need it.
+Note that since you don't own this repo, you cannot `git push` to it.
+You have to fork it on `github` to become the owner of your own fork.
+For this class, all assignments will be completed on repos that we provide for you.
+
+**Some hints for understanding the code-base.**
+All code that runs in user-level is in the files that correspond to the entries of [`UPROGS`](https://github.com/gparmer/gwu-xv6/blob/master/Makefile#L161-L176), and all of the header files that they include.
+The rest of the code executes in the kernel.
+Thus to add a new program, you only need to provide the `.c` file, and add it in a similar manner to `UPROGS`.
+
+When you're looking at a `.c` or `.h` file, always make sure you understand if it is executing in user-space (thus must make a system call to enter the kernel), or is in the kernel (thus can directly call functions within the kernel).
+Using a code indexing system will make it easier to walk through the source code.
+`ggtags` or `ctags` for emacs does great, but there are corresponding technologies for nearly all editors.
+
 ## Adding new files
 
 - When you want to add a user-level program, you simply implement it as a `.c` file, and add it, appropriately, to the list of `UPROGS` in the `Makefile`.
