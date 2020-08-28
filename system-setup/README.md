@@ -9,7 +9,14 @@ This offers several key advantages:
 -   All students and members of the instructional team run roughly analogous setups and thus are better equipped to help each other out.
 -   Standardization of tools better positions students to pair program and remotely collaborate using modern tools.
 
-The stack that we've chosen essentially includes:
+What's required:
+
+- Running Ubuntu 18 LTS operating system (in a VM is fine).
+    All homeworks will be *graded* in this environment, so if you do your homeworks in any other environment, it is likely that you'll get compiler errors.
+- Running VS Code with remote collaboration extensions for in-lab and in-class group exercises.
+
+You can still use your own editor and setup for the homeworks, but during class, these will be used.
+If you don't have a means to set these up, we've provided a *default* stack that essentially includes:
 
 -   a lightweight virtualization solution (WSL2 for Windows, Multipass for all others)
 -   a "headless" Ubuntu 18 LTS guest
