@@ -83,7 +83,8 @@ Examples
 ### Inspecting the Stack
 
 -   `bt` - Display a stack trace
--   `fr <n>` - Select a frame in the stack trace
+-   `fr <n>` - Select a frame in the stack trace. Selected frames can have local variables targetted by `print` (`p`).
+-   `up` and `down` - Select a frame up or down the stack.
 -   `i frame` - Display info on the selected frame
 -   `i args` - Display arguments to the selected frame
 -   `i lo` - Display local variables in the selected frame
