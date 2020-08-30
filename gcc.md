@@ -5,9 +5,12 @@
 -   `-Wall` - all warnings
 -   `-Wextra` - extra warnings
 -   `-g` - debugging information
--   `-Wpedantic` - standard conformance
 -   `-Werror` - turn warnings into errors
+
+## Optional GCC flags (e.g. not used in xv6)
+
 -   `-std=c17` - asks the compiler to use the C17 standard
+-   `-Wpedantic` - standard conformance
 
 # Basics and References
 
