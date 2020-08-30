@@ -21,7 +21,7 @@ _Note: This document uses the term `host` to mean your actual bare-metal Linux i
 
 ```bash
 cd ~
-echo -n "ssh_authorized_keys:\n  - " > ~/primary-config.yaml
+echo -n -e "ssh_authorized_keys:\n  - " > ~/primary-config.yaml
 cat ~/.ssh/id_rsa.pub >> ~/primary-config.yaml
 ```
 
