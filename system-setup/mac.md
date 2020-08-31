@@ -13,7 +13,7 @@ The suggested toolkit for Mac users is Multipass, a command line tool provided b
 
 ```bash
 cd ~
-echo -n "ssh_authorized_keys:\n  - " > ~/primary-config.yaml
+echo -n -e "ssh_authorized_keys:\n  - " > ~/primary-config.yaml
 cat ~/.ssh/id_rsa.pub >> ~/primary-config.yaml
 ```
 
