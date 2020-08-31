@@ -13,6 +13,7 @@ Pull requests to update any of this material are welcome and encouraged.
 -   How to automate building C projects using [GNU Make](make.md)
 -   Notes on how to think about [testing](testing.md).
 -   [Ubuntu Essentials](ubuntu.md)
+-   [Silberschatz Readings PDF](Silberschatz-Operating_Systems_Concepts.pdf)
 
 **Resources associated with the class include:**
 
