@@ -55,3 +55,114 @@ make qemu-nox
 1. Assuming everything completed properly, you should boot into xv6, an operating system modeled after version 6 of Bell Labs Research Unix.
 1. In xv6, run `cat README`
 1. Exit xv6 by hitting ctrl+a (then releasing both keys) and then x.
+
+## Troubleshooting
+
+_Note: If you hit a snag, first try restarting your machine before proceeding._
+
+All of the commands in this section assume a PowerShell session started as Administrator.
+
+### Are you running a new enough version of Windows?
+
+```powershell
+Get-ComputerInfo OsVersion
+```
+
+You should see build 19041 or higher
+
+```powershell
+OsVersion
+---------
+10.0.19041
+```
+
+### Have you enabled the Virtualization Extensions of your CPU?
+
+```powershell
+(GWMI Win32_Processor).VirtualizationFirmwareEnabled
+```
+
+You should see
+
+```
+True
+```
+
+If this is false, you need to enter your system BIOS to turn this on.
+
+### Have you enabled the Virtual Machine Platform feature in Windows 10?
+
+```powershell
+dism.exe /online /Get-FeatureInfo /featurename:VirtualMachinePlatform
+```
+
+Among other things, you should see:
+
+```powershell
+State : Enabled
+```
+
+If this is not enabled, run the following and then restart:
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+
+### Have you enabled the WSL Subsystem?
+
+```powershell
+dism.exe /online /Get-FeatureInfo /featurename:Microsoft-Windows-Subsystem-Linux
+```
+
+Among other things, you should see:
+
+```powershell
+State : Enabled
+```
+
+If this is not enabled, run the following and then restart:
+
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+
+### Are you able to query a WSL guest?
+
+Assuming WSL is setup, you should be able to list a guest and see that it is version 2. The presence of an asterisk indicates the default distribution
+
+```powershell
+wsl --list --verbose
+```
+
+```
+NAME                   STATE           VERSION
+* Ubuntu-18.04           Running         2
+```
+
+### Are you able to enter WSL?
+
+```powershell
+wsl
+```
+
+This should allow you to enter your default WSL distribution.
+
+If this fails, try the following:
+
+1. Disable WSL
+
+    ```powershell
+    dism.exe /online /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    ```
+
+1. Restart your system
+
+1. Enable WSL
+
+    ```powershell
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    ```
+
+1. Restart the system
+
+1. Try `wsl` again
