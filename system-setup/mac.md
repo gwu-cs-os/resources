@@ -8,7 +8,7 @@ The suggested toolkit for Mac users is Multipass, a command line tool provided b
 
 ## Installation Instructions
 
-1. Open Terminal and check if you have an SSH key on your system by seeing if `~/.ssh/id_rsa.pub` exists. If you do not have a key, you can generate one with `ssh-keygen -t rsa`. If you do not wish to set a password, just hit ENTER when asked for a passphrase. You should not have a public / private keyboard located at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa` respectively.
+1. Open Terminal and check if you have an SSH key on your system by seeing if `~/.ssh/id_rsa.pub` exists. If you do not have a key, you can generate one with `ssh-keygen -t rsa`. If you do not wish to set a password, just hit ENTER when asked for a passphrase. You should not have a public / private keyboard located at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa` respectively. If you generated a key, close and reopen Terminal to start a new shell session. You need to do this for ssh to be able to detect the presence of this new key.
 1. Generate a YAML configuration file containing your public key via the following:
 
 ```bash
