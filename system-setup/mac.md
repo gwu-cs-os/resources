@@ -83,3 +83,29 @@ make qemu-nox
 1. Assuming everything completed properly, you should boot into xv6, an operating system modeled after version 6 of Bell Labs Research Unix.
 1. In xv6, run `cat README`
 1. Exit xv6 by hitting ctrl+a (then releasing both keys) and then x.
+
+## Troubleshooting
+
+_Note: If you hit a snag, first try restarting your machine before proceeding._
+
+The following script can be used to generate useful information to help the instructional staff debug issues:
+
+```sh
+#!/bin/sh
+
+main() {
+  echo "Mac Hardware:"
+  system_profiler SPHardwareDataType
+
+  echo "Multipass Info:"
+  multipass info --all
+
+  echo "Primary lscpu:"
+  multipass exec primary -- lscpu
+
+  echo "Primary lsmem:"
+  multipass exec primary -- lsmem
+}
+
+main "$@"
+```
