@@ -38,3 +38,5 @@ Add more links here via Pull Request!
 -   [All things](https://github.com/nhivp/Awesome-Embedded) low-level and embedded.
 -   [The Night Watch: a satirical look at Systems Programming](https://scholar.harvard.edu/files/mickens/files/thenightwatch.pdf)
 -   [Three Tribes of Programming](https://josephg.com/blog/3-tribes/)
+-   [Operating Systems in Three Easy Pieces](http://pages.cs.wisc.edu/~remzi/OSTEP/)
+
