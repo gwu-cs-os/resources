@@ -147,8 +147,7 @@ Currently, multipass does not provide an easy mechanism to modify the number of 
 2. Run `multipass delete primary` to delete your VM. This is recoverable and equivalent to placing the VM in your "Trash Can" on the desktop.
 3. Run `multipass purge` to purge the data and "empty the Trash Can."
 4. Run `multipass list` to confirm that your instances are purged
-5. At this point, you should repeat the original setup instructions from step 5 onwards. Be sure to actually make the changes to the launch command that you care about!
-6. For the VSCode steps, you will not need to reinstall VSCode itself, but you will need to reinstall the remote VSCode backend and plugins on your Linux VM.
+5. At this point, you should repeat the original setup instructions from the `Setup your Multipass VM` section onwards. *Be sure to actually make the changes to the launch command that you care about!* For the VSCode steps, you will not need to reinstall VSCode itself, but you will need to reinstall the remote VSCode backend and plugins on your Linux VM.
 
 ## Appendix: Troubleshooting
 
