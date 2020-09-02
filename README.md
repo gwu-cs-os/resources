@@ -2,7 +2,7 @@ Pull requests to update any of this material are welcome and encouraged.
 
 ## Links Within this Repo
 
--   How to setup your [Mac](system-setup/mac.md), [Windows](system-setup/windows.md), or [Linux](system-setup/linux.md) computer for this course.
+-   How to setup your [Windows](system-setup/windows.md), [Linux, or Mac](system-setup/multipass.md) computer for this course.
 -   How to effectively search and use [man(ual) pages](manpages.md)
 -   A [git primer](gitprimer.md) and [high-level guidelines on using GitHub](github.md).
 -   Brief C [development requirements](c.md).
