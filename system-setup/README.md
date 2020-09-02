@@ -11,12 +11,12 @@ This offers several key advantages:
 
 What's required:
 
-- Running Ubuntu 18 LTS operating system (in a VM is fine).
-    All homeworks will be *graded* in this environment, so if you do your homeworks in any other environment, it is likely that you'll get compiler errors.
-- Running VS Code with remote collaboration extensions for in-lab and in-class group exercises.
+-   Running Ubuntu 18 LTS operating system (in a VM is fine). The Mac and Linux setup instructions below outline which steps can be skipped for this configuration
+    All homeworks will be _graded_ in this environment, so if you do your homeworks in any other environment, it is likely that you'll get compiler errors.
+-   Running VS Code with remote collaboration extensions for in-lab and in-class group exercises.
 
 You can still use your own editor and setup for the homeworks, but during class, these will be used.
-If you don't have a means to set these up, we've provided a *default* stack that essentially includes:
+If you don't have a means to set these up, we've provided a _default_ stack that essentially includes:
 
 -   a lightweight virtualization solution (WSL2 for Windows, Multipass for all others)
 -   a "headless" Ubuntu 18 LTS guest
@@ -28,9 +28,8 @@ If you don't have a means to set these up, we've provided a *default* stack that
 
 ## Setup Instructions
 
--   [Mac](mac.md)
 -   [Windows](windows.md)
--   [Linux](linux.md)
+-   [Mac and Linux](multipass.md)
 
 ## Feedback Welcome
 

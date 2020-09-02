@@ -1,0 +1,177 @@
+# Setup for Mac and Linux Users
+
+The suggested toolkit for Mac and Linux users is Multipass, a command line tool provided by Canonical that simplifies installation of Ubuntu LTS images.
+
+If you are running Ubuntu 18.04 LTS as your host environment and have stock compiler versions, you may run the xv6 environment natively. In this case, skip installation of Multipass, SSH key generation, everything in _Setup your Multipass VM_, and everything is _Connect VSCode to your Multipass VM_, resuming with the steps in _Setup xv6_
+
+## Minimum Requirement
+
+### Mac
+
+-   Mac OS Yosemite, version 10.10.3 or later installed on a 2010 or newer Mac.
+
+### Linux
+
+-   KVM and the ability to support snapd
+
+## Installation Instructions
+
+### Setup Dependencies on your Host Machine
+
+1. Confirm that your package manager is setup
+    - For Mac, check that brew is installed by running `brew help` or [install it](https://brew.sh/)
+    - For Linux, check that snap is install by by running `snap help` or [install it](https://snapcraft.io/docs/installing-snapd)
+2. Install Multipass
+    - Mac:
+    ```sh
+    brew cask install multipass
+    ```
+    - Linux:
+    ```sh
+    sudo snap install multipass
+    ```
+3. Install VSCode
+    - Mac:
+    ```sh
+    brew cask install visual-studio-code
+    ```
+    - Linux:
+    ```sh
+      sudo snap install code --classic
+    ```
+4. Install the following extensions:
+
+    - [Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+    - [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+    - [Live Share Extension Pack](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack)
+    - [x86 and x86_64 Assembly](https://marketplace.visualstudio.com/items?itemName=13xforever.language-x86-64-assembly)
+
+    via the following shell commands
+
+    ```sh
+    code --install-extension ms-vscode-remote.remote-ssh
+    code --install-extension ms-vscode.cpptools
+    code --install-extension MS-vsliveshare.vsliveshare-pack
+    code --install-extension 13xforever.language-x86-64-assembly
+    ```
+
+    Optionally, if you are coming from vim, emacs, or some other editor, and have a working muscle memory for those keybindings, [consider installing a keymap extension](https://marketplace.visualstudio.com/search?target=VSCode&category=Keymaps&sortBy=Relevance).
+
+5. Launch VSCode and confirm that the extensions have installed properly. You will potentially see installation messages on first start, including possibly a message prompting you to enter your user password to to install additional dependencies that the extensions require. Once this is complete, open the VSCode Extensions panel. You should see the extensions listed located under `LOCAL - INSTALLED`. If one of these extensions shows a `Reload Required` button, click it and wait for VSCode to reload.
+
+6. Open Terminal and check if you have an SSH key on your system by seeing if `~/.ssh/id_rsa.pub` exists. If you do not have a key, you can generate one with `ssh-keygen -t rsa`. If you do not wish to set a password, just hit ENTER when asked for a passphrase. You should not have a public / private keyboard located at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa` respectively. If you generated a key, close and reopen Terminal to start a new shell session. You need to do this for ssh to be able to detect the presence of this new key.
+
+### Setup your Multipass VM
+
+7. Generate a YAML configuration file containing your public key via the following:
+
+    ```sh
+    cd ~
+    echo -n -e "ssh_authorized_keys:\n  - " > ~/primary-config.yaml
+    cat ~/.ssh/id_rsa.pub >> ~/primary-config.yaml
+    ```
+
+8. Create a Linux guest named `primary`. If you are on a system with more than 8GB of RAM, you may optionally want to increase the memory allocated to this VM from 1GB to 2GB by changing `-m 1G` to `-m 2G` below.
+
+    ```bash
+    cd ~
+    multipass launch -n primary -c 4 -m 1G --cloud-init primary-config.yaml 18.04
+    ```
+
+9. You now have a Ubuntu 18 LTS VM named primary with a default user named ubuntu. Run `multipass list` to see that this is currently running and that it is the only VM listed.
+10. Enter the guest by running `multipass shell`
+11. Confirm that your VM has multiple virtual processors by running `lscpu`. Among others things, you should see:
+    ```
+    CPU(s):              4
+    On-line CPU(s) list: 0-3
+    Thread(s) per core:  2
+    Core(s) per socket:  2
+    Socket(s):           1
+    NUMA node(s):        1
+    ```
+12. Set a User password. By default, Multipass does not require passwords, but some scripts require them. Run `sudo passwd ubuntu` and enter a new password
+13. By default, multipass lets you access the Ubuntu shell via the command `multipass shell`. However, tools that enable remote development need to be able to use SSH. The public key you provided via the `~primary-config.yaml` file should allow this. However, before we install VSCode, we should confirm that SSH works as expected, and to do this, we need to get the IP address of the VM. This IP address will change often as you start and stop your VM, so you will often need to figure out what this value is. With Multipass, there are two ways of doing this:
+    - In the primary guest, you can run `ifconfig`. The address will follow `inet` and look something like this `192.xxx.xxx.xxx`
+    - In the host OS, you can run `multipass list`. The address is under the column IPv4.
+14. Note the address from above, and then from a host shell, execute `ssh ubuntu@<ip_address>`, replacing <ip_address> with the address of your Multipass VM named primary. You should see a message like the following:
+
+    Depending on your distro and your SSH security settings, your system might cache fingerprints of known hosts that you've connected to in the past. This likely resembles a message like the following:
+
+    ```
+    The authenticity of host '192.168.64.2 (192.168.64.2)' can't be established.
+    ECDSA key fingerprint is SHA256:EpXmNgNYL6wAICuQV+YaVjeTXwbGukzYh/U328lEmvI.
+    Are you sure you want to continue connecting (yes/no/[fingerprint])?
+    ```
+
+    Enter `yes`, and you should successfully log into your guest. Enter `exit` to return to your host.
+
+    _Note: Because your guest is dynamically allocated an IP, it is possible that it might be allocated an IP address that was previously used by a different host. If this occurs, you may see a security warning such as “WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!”. If this occurs, run `vim ~/.ssh/known_hosts` and clear out the offending entry. Once this is complete, you should be able to cleanly execute `ssh ubuntu@<ip_address>`._
+
+### Connect VSCode to your Multipass VM
+
+15. Open VSCode and click on the green button in the bottom left corner. This should open a menu listing several `Remote-SSH` options. Click `Remote-SSH: Connect to Host...`. Enter `ubuntu@<ip_address>`, replacing <ip_address> with the address of your Multipass VM as before. This will open a new VSCode window. Feel free to close the old window. After a brief installation of the VSCode backend onto your VM, the bottom left corner's green button should now read: `SSH: <ip_address>`.
+16. Hit ctrl+\` in VSCode, and ensure that the terminal in VSCode opens to your Linux home directory. It should show `ubuntu@primary:~$`
+17. By default, the previous extensions you installed are running on the host operating system. However, some of these need to run on the remote backend running on your Linux guest. To address this, open the VSCode Extensions panel, and look under the heading `LOCAL - INSTALLED`. You will see several extensions that are grayed out and have a button `Install in SSH: <ip_address>`. Click this button for each extension.
+18. You should now see these extensions under `SSH: <ip_address> - INSTALLED`. However, they likely have a button `Reload Required`. Once all extensions are installed under Ubuntu, click that button to reload the window. You will be prompted to install additional Linux dependencies, including prompting for your user password. When complete, you will be asked to reload VSCode yet again. Click “Reload Now.”
+
+### Setup xv6
+
+19. Open your primary VM in VSCode if it is not already open and hit ctrl+\` to open the integrated shell in VSCode. It should show `ubuntu@primary:~$`. We're now ready to install xv6 and its dependencies.
+
+    ```sh
+    sudo apt-get update --yes
+    sudo apt-get install build-essential gdb qemu-system-x86 --yes
+    cd ~
+    mkdir projects
+    cd projects
+    git clone https://github.com/gwu-cs-os/gwu-xv6
+    cd gwu-xv6
+    code -r .
+    ```
+
+20. This will open the xv6 project in VSCode. Feel free to look at the source code. Reopen the terminal ctrl+\` and build xv6.
+
+    ```sh
+    make qemu-nox
+    ```
+
+21. Assuming everything completed properly, you should boot into xv6, an operating system modeled after version 6 of Bell Labs Research Unix.
+22. In xv6, run `cat README`
+23. Exit xv6 by hitting ctrl+a (then releasing both keys) and then x.
+
+## Appendix: Deleting and Rebuilding the VM
+
+Currently, multipass does not provide an easy mechanism to modify the number of virtual processors and memory allocated to your virtual machine. As a result, if you underprovision the amount of memory assigned to your VM, your best bet is to delete, purge, and rebuild your primary VM. These instructions are intended to take you through that process. Please note that this deletes all data on this VM!
+
+1. Log into you multipass VM and backup data that you are concerned with losing. Generally, this should only be assignments and labs, which should always be saved, committed and pushed to GitHub. If there is any data that you need to save, you can back this data up by copying the files/directories to your host filesystem. By default, multipass mounts your host machine's home folder at `~/Home`.
+2. Run `multipass delete primary` to delete your VM. This is recoverable and equivalent to placing the VM in your "Trash Can" on the desktop.
+3. Run `multipass purge` to purge the data and "empty the Trash Can."
+4. Run `multipass list` to confirm that your instances are purged
+5. At this point, you should repeat the original setup instructions from step 5 onwards. Be sure to actually make the changes to the launch command that you care about!
+6. For the VSCode steps, you will not need to reinstall VSCode itself, but you will need to reinstall the remote VSCode backend and plugins on your Linux VM.
+
+## Appendix: Troubleshooting
+
+_Note: If you hit a snag, first try restarting your machine before proceeding._
+
+The following script can be used to generate useful information to help the instructional staff debug issues:
+
+```sh
+#!/bin/sh
+
+main() {
+  echo "Mac Hardware:"
+  system_profiler SPHardwareDataType
+
+  echo "Multipass Info:"
+  multipass info --all
+
+  echo "Primary lscpu:"
+  multipass exec primary -- lscpu
+
+  echo "Primary lsmem:"
+  multipass exec primary -- lsmem
+}
+
+main "$@"
+```
