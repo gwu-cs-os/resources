@@ -71,11 +71,11 @@ If you are running Ubuntu 18.04 LTS as your host environment and have stock comp
     cat ~/.ssh/id_rsa.pub >> ~/primary-config.yaml
     ```
 
-8. Create a Linux guest named `primary`. If you are on a system with more than 8GB of RAM, you may optionally want to increase the memory allocated to this VM from 1GB to 2GB by changing `-m 1G` to `-m 2G` below.
+8. Create a Linux guest named `primary`. If you are on a system with more than 8GB of RAM, you may optionally want to increase the memory allocated to this VM from 1.5GB to 2GB by changing `-m 1500M` to `-m 2G` below.
 
     ```bash
     cd ~
-    multipass launch -n primary -c 4 -m 1G --cloud-init primary-config.yaml 18.04
+    multipass launch -n primary -c 4 -m 1500M --cloud-init primary-config.yaml 18.04
     ```
 
 9. You now have a Ubuntu 18 LTS VM named primary with a default user named ubuntu. Run `multipass list` to see that this is currently running and that it is the only VM listed.
