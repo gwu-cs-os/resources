@@ -5,7 +5,7 @@
 ### Debugging Unoptimized Code
 
 ```sh
-gcc -g -Og main.c
+gcc -g -O0 main.c
 gdb a.out
 ```
 
