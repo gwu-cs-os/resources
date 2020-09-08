@@ -174,3 +174,84 @@ main() {
 
 main "$@"
 ```
+
+## Appendix: Using A Permanent Alias For Ease of Access
+
+_Note: This is purely to make running xv6 easier from the terminal and is in no way needed for xv6 to work._
+
+The following steps can be used to create a permanent alias that fires off all the commands needed to run xv6 easily.
+
+**1. Figure out your commands!**
+
+To start, we want to get together all the commands we need to run xv6.
+These include navigating to where we cloned the provided repo, opening the xv6 project in VSCode, and then finally building xv6.
+The commands needed to do so are:
+
+```
+cd ~/projects/gwu-xv6
+code -r .
+make qemu-nox
+```
+
+_Note: The location you cloned the provided repo is subject to change, so make sure you have said location in the first command above._
+
+**2. Create your alias!**
+
+Once you have these commands ready (try running them manually to verify they are correct), it is time to make our alias command!
+A generic alias command is seen below:
+
+```
+alias proj="cd /home/tree/projects/java"
+```
+
+Above we can see that the alias "proj" will fire off the command "cd /home/tree/projects/java" when "proj" is run as a command in the terminal.
+Using this command as our template, we can craft our own alias using the previously gathered commands, separating individual commands with "; ":
+
+```
+alias xv6='cd ~/projects/gwu-xv6; code -r .; make qemu-nox'
+```
+
+**3. Find where to put your alias!**
+
+Now, we could stop right here and just simply run this alias command in our terminal.
+The only issue is that this alias will exist until you kill the terminal session, then it will be gone.
+To make our alias permanent, we need to put it in the ~/.bash_aliases file.
+This file is loaded by "~/.bashrc", and we can't just simply open it, we have to source it.
+To source and edit it, we can simply use our favorite text editor, VIM!
+
+```
+vim ~/.bashrc
+```
+
+Once we have done this, we will be able to edit the file.
+Search for the following lines in the file and make sure they are not commented.
+
+```
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+```
+
+**4. Insert your alias!**
+
+Once uncommented, if they weren't already, we want to insert our newly made alias command below the above lines as so:
+
+```
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+alias xv6='cd ~/projects/gwu-xv6; code -r .; make qemu-nox'
+```
+
+Once done, :wq your way out of there! 
+
+**5. Test your alias!**
+
+Enjoy your new permanent alias by running your alias as a command!
+
+```
+xv6
+```
+
+**Enjoy!**
