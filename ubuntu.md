@@ -89,9 +89,11 @@ Even if you prefer graphical editors, such as VSCode, it is essential that you b
 
 15. What do either of the shell commands `vi` or `emacs` do?
 
-16. What is a package manager?
+16. What is a pipeline and how is it used on the shell?
 
-17. What is the command to install vim on Ubuntu?
+17. What is awk?
+
+18. What is a package manager?
 
 ## Reference Cards
 

@@ -39,13 +39,13 @@ rule_name: dependency_a dependency_b
 `make all` runs `build`, which compiles the `main.c` file:
 
 ```makefile
+all: build
+
 clean:
     rm -rf a.out
 
 build: main.c
     @gcc main.c
-
-all: build
 ```
 
 ### Dependency Tracking
@@ -53,6 +53,8 @@ all: build
 When a rule executes, it first executes all dependencies from left to right. Consider the following example. As much as possible, a Makefile seeks to minimize unnecessary work. It does this by inspecting the last changed timestamps of files that the rule depends upon. Thus, the `build` rule only runs if `main.c` has changed since the Makefile was last run. This property is transitive.
 
 ```makefile
+all: before build after silent
+
 clean:
     rm -rf a.out
 
@@ -67,8 +69,6 @@ silent:
 
 build: main.c
     @gcc main.c
-
-all: before build after silent
 ```
 
 Assuming that `a.out` exists and `main.c` has had no changes since the execution of the Makefile, running `make all` would run as follows:
