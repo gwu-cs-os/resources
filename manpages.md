@@ -22,7 +22,9 @@ Unix-based systems have excellent documentation, and learning how to search and 
 
 As a first step, let’s use `man` to look at its own manual page.
 
-`man man`
+```sh
+man man
+```
 
 Look at the DESCRIPTION and EXAMPLES sections, and notice that the man pages essentially retain [the structure of the original _Unix Programmer’s Manual_ written by Dennis Ritchie and Ken Thompson](https://www.bell-labs.com/usr/dmr/www/manintro.pdf).
 
@@ -47,13 +49,17 @@ The instructional team assumes that you possess a basic understanding of how sou
 
 System calls are a topic that we will repeatedly revisit in the course. In a lab in the near future, you will write your own system call. Read the introduction of this section to get a general idea of what this is.
 
-`man intro.2`
+```sh
+man intro.2
+```
 
 Notice that the `.2` explicitly specifies which section’s intro we mean. Often times, different sections of the Programmer’s Manual have entries with the same name. We disambiguate this by making the section explicit.
 
 Now let’s look at fork, one of the most important system calls.
 
-`man fork`
+```sh
+man fork
+```
 
 Try to answer the following questions:
 
@@ -71,17 +77,23 @@ Let’s go through a semi-contrived example to illustrate how you might use this
 
 A good first step might be lookup up a one line description of the command:
 
-`whatis strlen`
+```sh
+whatis strlen
+```
 
 However, we often likely want additional information and want to pull up the full man page.
 
-`man strlen`
+```sh
+man strlen
+```
 
 Notice that `whatis` returned the contents of the NAME section.
 
 We’ve discussed some of the sections of a manpage before, but scroll down to the SEE ALSO section. This section discusses related manual pages that we might be interested. In this case, there is a very similar command `strnlen`. Let’s try to get a better understanding of the differences.
 
-`man strnlen`
+```sh
+man strnlen
+```
 
 -   What are the differences between these functions?
 
@@ -91,7 +103,7 @@ We’ve discussed some of the sections of a manpage before, but scroll down to t
 
 Thus far, we’ve used `whatis` and `man` to look at data on various entries, but we haven’t addressed how any of this works behind the scenes. Manual pages are powered by a database called `man-db`. This database includes quickly searchable metadata and manual page entries and information about where to find the complete manual pages on the filesystem. Normally, this database is fully transparent to users, but frequently, when you install a package from a package manager, you’ll see a log messages that look like this:
 
-```
+```sh
 Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
 ```
 
@@ -103,11 +115,15 @@ Sections 4-8 are less frequently used by systems programmers, but we can browse 
 
 Typically, `apropos` is used for a keyword search, but we can also use it to list all manual pages by searching for the `.` character, which matches on everything.
 
-`apropos .`
+```sh
+apropos .
+```
 
 We can use a flag to list all entries in a particular section. List all manual pages in section 7, “Miscellaneous.”
 
-`apropos –section 7 .`
+```sh
+apropos --section 7 .
+```
 
 Scrolling through, it does indeed seem like Section 7 has quite a lot of miscellaneous content.
 
@@ -127,31 +143,33 @@ Let’s run through some example scenarios of how this can be useful in a day-to
 
 Because we know we are searching for a C standard library function, we can narrow our search to section 3. The syntax is similar to the previous example where we listed all pages in section 7. A good first pass at a search might be as follows:
 
-`apropos –section 3 complex number`
+```sh
+apropos --section 3 complex number
+```
 
 Unfortunately, the results don’t seem too useful! By default, apropos performs an OR search, meaning the results include matches that contain “complex”, “number”, or both. A lot of things mention “number,” so our signal to noise ratio is weak. One possible improvement is that we can perform a strict search on the phrase “complex number”
 
-```
-apropos –section 3 “complex number”
+```sh
+apropos --section 3 “complex number”
 ```
 
 This works great here, but this might now work for other queries. Imagine for example that we want to find functions that deal with string length. We’d likely want to match phrases such as “length of a string” as well, so we really want to perform an AND search for text that contains both words.
 
 ```
-apropos –and string length
+apropos string --and length
 ```
 
 With complex numbers, we knew that we were searching for standard library functionality, but often, things are a bit more ambiguous with systems programming because we might be interested in directly calling system calls as well. Thus, we want to be able to search multiple sections at the same time.
 
 Imagine that we are searching for operations involving a `pipe`.
 
-```
-apropos –section 3,2 pipe
+```sh
+apropos --section 3,2 pipe
 ```
 
 The takeaway is that `apropos` is able to handle very complex queries, include wildcard globbing and regular expressions. As with most everything on a Unix-based system, to learn how to use these options, consult the man page:
 
-```
+```sh
 man apropos
 ```
 
@@ -161,7 +179,9 @@ The `apropos` utility only searches the metadata entry contained in the `man-db`
 
 For example, many manual pages attribute the authors that wrote the utility. We can search for man pages that mention Linus Torvalds.
 
-`man –global-apropos “Linus Torvalds”`
+```sh
+man --global-apropos "Linus Torvalds"
+```
 
 ## Review
 
