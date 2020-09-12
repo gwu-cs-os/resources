@@ -166,3 +166,60 @@ If this fails, try the following:
 1. Restart the system
 
 1. Try `wsl` again
+
+### _Are you unable to run apt due to clock drift?_
+
+A student reported that `sudo apt update` failed with the following:
+```
+Hit:1 https://packages.microsoft.com/repos/azure-cli bionic InRelease 
+Hit:2 http://archive.ubuntu.com/ubuntu bionic InRelease 
+Get:3 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB] 
+Hit:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease 
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB] 
+Reading package lists... Done 
+E: Release file for http://security.ubuntu.com/ubuntu/dists/bionic-security/InRelease is not valid yet (invalid for another 31min 12s). Updates for this repository will not be applied. 
+E: Release file for http://archive.ubuntu.com/ubuntu/dists/bionic-updates/InRelease is not valid yet (invalid for another 11h 0min 22s). Updates for this repository will not be applied.
+ ```
+
+Run the following script to detect and correct clock drift.
+
+```bash
+#!/bin/bash
+# Based on the following error conditions
+# 1: https://github.com/microsoft/WSL/issues/4114
+# 2: https://askubuntu.com/questions/1096930/sudo-apt-update-error-release-file-is-not-yet-valid/1168885#1168885
+
+main() {
+  local -i unix_hours
+  local -i unix_minutes
+  local -i unix_seconds
+  local -i win_hours
+  local -i win_minutes
+  local -i win_seconds
+  local -i total_drift_secs
+
+  win_seconds=$(powershell.exe /C Get-Date -Format ss | sed 's/^0*//' | tr -d '\r')
+  unix_seconds=$(date '+%S' | sed 's/^0*//')
+  win_minutes=$(powershell.exe /C Get-Date -Format mm | sed 's/^0*//' | tr -d '\r')
+  unix_minutes=$(date '+%M' | sed 's/^0*//')
+  win_hours=$(powershell.exe /C Get-Date -Format HH | sed 's/^0*//' | tr -d '\r')
+  unix_hours=$(date '+%H' | sed 's/^0*//')
+
+  printf "Unix: %d:%d:%d\n" "$unix_hours" "$unix_minutes" "$unix_seconds"
+  printf "Windows: %d:%d:%d\n" "$win_hours" "$win_minutes" "$win_seconds"
+
+  total_drift_secs=$(((win_hours - unix_hours) * 60 * 60 + (win_minutes - unix_minutes) * 60 + (win_seconds - unix_seconds)))
+  if ((total_drift_secs < 0)); then
+    ((total_drift_secs *= -1))
+  fi
+
+  printf "Drift: %ds\n" "$total_drift_secs"
+  if ((total_drift_secs > 60)); then
+    echo "Correcting Drift"
+    sudo hwclock --hctosys
+  fi
+}
+
+main "$@"
+
+```
