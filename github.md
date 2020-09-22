@@ -9,6 +9,12 @@ I'd appreciate PRs to
 -   adding specific information about how to do PRs for this classes repo,
 -   add anything that I missed here.
 
+## Configure your email for a `git` repository
+```shell
+$ git config user.email "example@example.com"
+$ cat .git/config #To Verify 
+```
+
 ## Using `github`
 
 `github` provides a wonderful set of repository management features online.
