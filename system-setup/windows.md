@@ -43,7 +43,7 @@ This environment runs a headless Ubuntu virtual machine in a lightweight virtual
 
     ```sh
     sudo apt-get update --yes
-    sudo apt-get install build-essential gdb qemu-system-x86 --yes
+    sudo apt-get install build-essential gdb glibc-doc qemu-system-x86 --yes
     cd ~
     mkdir projects
     cd projects
