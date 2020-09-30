@@ -58,3 +58,26 @@ You can increase the number of blocks in the system by increasing the `FSSIZE` v
 ## Debugging with `gdb`
 
 Please see [this section on xv6](https://github.com/gwu-cs-os/resources/blob/master/gdb.md#xv6-specific-stuff) in the gdb resources.
+
+## Executing main() in xv6
+
+When executing a C program in a Linux system, an executable file (ELF) is created after compiling. In this file, there is a pointer to the `_start()` function which serves as the entry point for the program. This function calls `main()` and `exit()` once `main()` has returned after executing. This is why, in Linux, we can simply do: 
+```
+int main()
+{
+	return 0;
+}
+```
+and our process will be terminated via the "hidden" `_start()` function. However, in xv6, we do not have this system setup. If we try to implement the above program in xv6, we may get an error like:
+
+```
+trap 14 err 5 on cpu 1 eip 0xffffffff addr 0xffffffff--kill proc
+```
+
+To address this, we have to terminate the process ourselves, like the `_start()` function typically does for us: 
+```
+int main()
+{
+	exit();
+}
+```
