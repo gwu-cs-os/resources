@@ -8,7 +8,7 @@ If you are running Ubuntu 20 LTS as your host environment and have stock compile
 
 ### Mac
 
--   Mac OS Yosemite, version 10.10.3 or later installed on a 2010 or newer Mac. 
+-   Mac OS Yosemite, version 10.10.3 or later installed on a 2010 or newer Mac.
     Unfortunately, we don't know how currently to get x86 Ubuntu running on OSX with M1 chips.
     Hop into `#tech-support` and discuss.
 
@@ -52,7 +52,7 @@ Note, we're still looking for a way to do this with Apple M1 chips.
 
     ```bash
     cd ~
-    multipass launch -n primary -c 4 -m 1500M --cloud-init primary-config.yaml 18.04
+    multipass launch -n primary -c 4 -m 1500M --cloud-init primary-config.yaml 20.04
     ```
 
 6. You now have a Ubuntu 20 LTS VM named primary with a default user named ubuntu. Run `multipass list` to see that this is currently running and that it is the only VM listed.
@@ -256,7 +256,7 @@ fi
 alias xv6='cd ~/projects/gwu-xv6; code -r .; make qemu-nox'
 ```
 
-Once done, :wq your way out of there! 
+Once done, :wq your way out of there!
 
 **5. Test your alias!**
 

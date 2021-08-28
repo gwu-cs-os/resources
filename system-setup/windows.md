@@ -55,8 +55,8 @@ This environment runs a headless Ubuntu virtual machine in a lightweight virtual
     ```
 
     Optionally, if you are coming from vim, emacs, or some other editor, and have a working muscle memory for those keybindings, [consider installing a keymap extension](https://marketplace.visualstudio.com/search?target=VSCode&category=Keymaps&sortBy=Relevance).
-1. By default, these extensions were installed on your host (Windows) operating system. However, some of these need to run on your Linux guest. To address this, open the VSCode Extensions panel (Ctrl+Shift+X), and look under the heading `LOCAL - INSTALLED`. You will see several extensions that are grayed out and have a button `Install in WSL:Ubuntu:18.04`. Click this for each.
-1. You should now see these extensions under `WSL:UBUNTU-18.04 - INSTALLED`. However, they likely have a button `Reload Required`. Once all extensions are installed under Ubuntu, click that button. You may be prompted to enter your Linux password to install additional backend Linux dependencies
+1. By default, these extensions were installed on your host (Windows) operating system. However, some of these need to run on your Linux guest. To address this, open the VSCode Extensions panel (Ctrl+Shift+X), and look under the heading `LOCAL - INSTALLED`. You will see several extensions that are grayed out and have a button `Install in WSL:Ubuntu:20.04`. Click this for each.
+1. You should now see these extensions under `WSL:UBUNTU-20.04 - INSTALLED`. However, they likely have a button `Reload Required`. Once all extensions are installed under Ubuntu, click that button. You may be prompted to enter your Linux password to install additional backend Linux dependencies
 
 ## Appendix: Troubleshooting
 
@@ -138,7 +138,7 @@ wsl --list --verbose
 
 ```
 NAME                   STATE           VERSION
-* Ubuntu-18.04           Running         2
+* Ubuntu-20.04           Running         2
 ```
 
 ### _Are you able to enter WSL?_
@@ -173,13 +173,13 @@ If this fails, try the following:
 
 A student reported that `sudo apt update` failed with the following:
 ```
-Hit:1 https://packages.microsoft.com/repos/azure-cli bionic InRelease 
-Hit:2 http://archive.ubuntu.com/ubuntu bionic InRelease 
-Get:3 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB] 
-Hit:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease 
-Get:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB] 
-Reading package lists... Done 
-E: Release file for http://security.ubuntu.com/ubuntu/dists/bionic-security/InRelease is not valid yet (invalid for another 31min 12s). Updates for this repository will not be applied. 
+Hit:1 https://packages.microsoft.com/repos/azure-cli bionic InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu bionic InRelease
+Get:3 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Hit:5 http://archive.ubuntu.com/ubuntu bionic-backports InRelease
+Get:4 http://archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Reading package lists... Done
+E: Release file for http://security.ubuntu.com/ubuntu/dists/bionic-security/InRelease is not valid yet (invalid for another 31min 12s). Updates for this repository will not be applied.
 E: Release file for http://archive.ubuntu.com/ubuntu/dists/bionic-updates/InRelease is not valid yet (invalid for another 11h 0min 22s). Updates for this repository will not be applied.
  ```
 
