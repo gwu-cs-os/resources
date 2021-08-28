@@ -86,7 +86,7 @@ Note, we're still looking for a way to do this with Apple M1 chips.
 
 ### Setup xv6
 
-10. Open your primary VM in VSCode if it is not already open and hit ctrl+\` to open the integrated shell in VSCode. It should show `ubuntu@primary:~$`. We're now ready to install xv6 and its dependencies.
+10. Open a shell in your VM (e.g. using ssh or in VSCode if it is not already open and hit ctrl+\` to open the integrated shell). It should show `ubuntu@primary:~$`. We're now ready to install xv6 and its dependencies.
 
     ```sh
     sudo apt-get update --yes
@@ -99,7 +99,7 @@ Note, we're still looking for a way to do this with Apple M1 chips.
     code -r .
     ```
 
-11. This will open the xv6 project in VSCode. Feel free to look at the source code. Reopen the terminal ctrl+\` and build xv6.
+11. This will open the xv6 project. Feel free to look at the source code. Reopen the terminal and build xv6.
 
     ```sh
     make qemu-nox
@@ -109,7 +109,7 @@ Note, we're still looking for a way to do this with Apple M1 chips.
 13. In xv6, run `cat README`
 14. Exit xv6 by hitting ctrl+a (then releasing both keys) and then x.
 
-## Appendix: Setting up VSCode
+## Appendix: Setting up VSCode (**optional**)
 
 You can optionally use VSCode.
 If you want to, see below some options.
