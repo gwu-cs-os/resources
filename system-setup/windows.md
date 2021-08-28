@@ -16,7 +16,7 @@ This environment runs a headless Ubuntu virtual machine in a lightweight virtual
     Note: If you see `Error: 0x1bc` or a message similar to `WSL 2 requires an update to its kernel component. For information please visit https://aka.ms/wsl2kernel` when you run `wsl --set-default-version 2`, download and install the kernel update from https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel
 
 3. Verify that your Linux guest is using version 2 by running `wsl --list --verbose` in a PowerShell session
-4. Hit ctrl+\` to open the integrated shell in VSCode. Visually check that this is your guest (username ubuntu) and not your host environment. We're now ready to install xv6 and its dependencies.
+4. Open a terminal (using `ssh` or using VSCode by hitting ctrl+\` to open the integrated shell). Visually check that this is your guest (username ubuntu) and not your host environment. We're now ready to install xv6 and its dependencies.
 
     ```sh
     sudo apt-get update --yes
