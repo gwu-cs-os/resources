@@ -9,8 +9,10 @@ If you are running Ubuntu 20 LTS as your host environment and have stock compile
 ### Mac
 
 -   Mac OS Yosemite, version 10.10.3 or later installed on a 2010 or newer Mac.
-    Unfortunately, we don't know how currently to get x86 Ubuntu running on OSX with M1 chips.
+-   Unfortunately, we don't know how currently to get x86 Ubuntu running on OSX with M1 chips.
     Hop into `#tech-support` and discuss.
+	You might use [UTM or QEmu](https://nomadic-dmitry.medium.com/apple-silicon-m1-how-to-run-x86-and-arm-virtual-machines-on-it-cdd9d9054483) and perhaps [docker](https://docs.docker.com/desktop/mac/apple-silicon/).
+	If you get this working, please let us know and do a PR with instructions!
 
 ### Linux
 
