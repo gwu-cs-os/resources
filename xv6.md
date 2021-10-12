@@ -81,3 +81,21 @@ int main()
 	exit();
 }
 ```
+
+## Errors running `sign.pl`
+
+If your `make` is breaking when trying to run `sign.pl`, try and run the command at which `make` breaks.
+
+For example, if it breaks on:
+
+```
+...
+./sign.pl bootblock
+make: ./sign.pl: Command not found
+...
+```
+
+...try running `./sign.pl bootblock`. 
+If the error it reports has a `^M` in it, you have somehow copied some of the `xv6` files through Windows, which uses [CR/LF newlines](https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/).
+Linux (i.e. WSL) doesn't understand these newlines.
+To update the `sign.pl` file to have proper Linux newlines, you can (install and) use the `dos2unix` program: `dos2unix sign.pl` which removes the `^M` newline.
