@@ -54,6 +54,7 @@ Using a code indexing system will make it easier to walk through the source code
 
 When you add more files (e.g. test files) into the system, you may run out of blocks.
 You can increase the number of blocks in the system by increasing the `FSSIZE` variable.
+Sometimes it is necessary to increase `BSIZE` as well.
 
 ## Debugging with `gdb`
 
