@@ -32,7 +32,7 @@ Note, we're still looking for a way to do this with Apple M1 chips.
 2. Install Multipass
     - Mac:
     ```sh
-    brew cask install multipass
+    brew install --cask multipass
     ```
     - Linux:
     ```sh
