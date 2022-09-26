@@ -11,7 +11,7 @@ $ make qemu
 ```
 
 Note that the `xv6` book has a great overview of the design of the *entire* system.
-Please use it [as a resource](https://pdos.csail.mit.edu/6.828/2012/xv6/xv6-rev7.pdf) if you need it.
+Please use it [as a resource](https://pdos.csail.mit.edu/6.828/2018/xv6/book-rev11.pdf) if you need it.
 Note that since you don't own this repo, you cannot `git push` to it.
 You have to fork it on `github` to become the owner of your own fork.
 For this class, all assignments will be completed on repos that we provide for you.
