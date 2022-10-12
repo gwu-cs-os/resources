@@ -117,33 +117,35 @@ When the variable changes, a breakpoint fires, and the old and new state of the 
 
 ### Debugging the xv6 kernel
 
-1. Run `make qemu-nox-gdb`
-2. Then in a new tab run `gbd kernel`
-3. When ready to boot xv6, run `continue`
-4. The xv6 shell is locked when the GDB console is active and visa versa.
-5. To stop xv6 execution and open the GDB console, hit `ctrl+c`
-6. Inspect state and set breakpoints
-7. To resume xv6 execution, enter `continue`
-8. Repeat steps 5-7 until debugging complete
-9. Quit GDB by entering `quit` at the GDB console.
-10. To quit the qemu session running xv6 by selecting the xv6 terminal and entering `ctrl+a` followed by x
+1. Run `make qemu-nox-gdb`. If you get an error about missing target for `.gdbinit.tmpl`, copy [this file](https://github.com/mit-pdos/xv6-public/blob/master/.gdbinit.tmpl) into your xv6 directory
+2. Then in a new tab run `gdb kernel`. 
+3. Once gdb starts, run `source .gdbinit`
+4. Setup any breakpoints you want. When ready to boot xv6, run `continue`
+5. The xv6 shell is locked when the GDB console is active and visa versa.
+6. To stop xv6 execution and open the GDB console, hit `ctrl+c`
+7. Inspect state and set breakpoints
+8. To resume xv6 execution, enter `continue`
+9. Repeat steps 4-7 until debugging complete
+10. Quit GDB by entering `quit` at the GDB console.
+11. To quit the qemu session running xv6 by selecting the xv6 terminal and entering `ctrl+a` followed by x
 
 ### Debugging xv6 Shell Programs
 
 By default, GDB is configured to debug the xv6 kernel. The process for debugging programs that run on the xv6 shell is a bit more involved. Here is an example with the program `cat`. Be sure that the Makefile is configured to add the debugging symbols to these programs.
 
-1. Run `make qemu-nox-gdb`
+1. Run `make qemu-nox-gdb`. If you get an error about missing target for `.gdbinit.tmpl`, copy [this file](https://github.com/mit-pdos/xv6-public/blob/master/.gdbinit.tmpl) into your xv6 directory
 2. Then in a new tab run `gbd kernel`
-3. When ready to boot xv6, run `continue`
-4. The xv6 shell is locked when the GDB console is active and visa versa.
-5. To stop xv6 execution and open the GDB console, hit `ctrl+c`
-6. Load the debugging symbol for the userspace program that you want to debug. Generally these are prefixed with an underscore, so to debug `cat`, you enter `file _cat`
-7. Set a breakpoint on cat, `b cat`
-8. Resume xv6 execution, enter `continue`
-9. Execute `cat` in the xv6 shell
-10. The breakpoint you set should have been caught, throwing you to the GDB shell. Perform debugging as needed.
-11. Repeat steps 7-10 as needed
-12. When done with cat, you can resume debugging the kernel by entering `file kernel`
+3. Once gdb starts, run `source .gdbinit`
+4. When ready to boot xv6, run `continue`
+5. The xv6 shell is locked when the GDB console is active and visa versa.
+6. To stop xv6 execution and open the GDB console, hit `ctrl+c`
+7. Load the debugging symbol for the userspace program that you want to debug. Generally these are prefixed with an underscore, so to debug `cat`, you enter `file _cat`
+8. Set a breakpoint on cat, `b cat`
+9. Resume xv6 execution, enter `continue`
+10. Execute `cat` in the xv6 shell
+11. The breakpoint you set should have been caught, throwing you to the GDB shell. Perform debugging as needed.
+12. Repeat steps 7-10 as needed
+13. When done with cat, you can resume debugging the kernel by entering `file kernel`
 
 ## Additional Resources
 
