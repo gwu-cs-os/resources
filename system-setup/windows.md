@@ -10,8 +10,8 @@ This environment runs a headless Ubuntu virtual machine in a lightweight virtual
 
 ## Installation Instructions
 
-1. Install the new Windows Terminal. This generally does a better job with Linux shells, and it makes it easier to toggle between PowerShell, DOS, and (once installed) your Ubuntu 20 guest. https://www.microsoft.com/store/productId/9N0DX20HK701
-2. Install the WSL 2 environment. https://docs.microsoft.com/en-us/windows/wsl/install-win10. When you get to the _Install your Linux distribution of choice_ step, select Ubuntu 20 LTS. You might have to reboot your PC after the installation.
+1. Install the new Windows Terminal. This generally does a better job with Linux shells, and it makes it easier to toggle between PowerShell, DOS, and (once installed) your ubuntu 22 guest. https://www.microsoft.com/store/productId/9N0DX20HK701
+2. Install the WSL 2 environment. https://docs.microsoft.com/en-us/windows/wsl/install-win10. When you get to the _Install your Linux distribution of choice_ step, select ubuntu 22 LTS. You might have to reboot your PC after the installation.
 
     Note: If you see `Error: 0x1bc` or a message similar to `WSL 2 requires an update to its kernel component. For information please visit https://aka.ms/wsl2kernel` when you run `wsl --set-default-version 2`, download and install the kernel update from https://docs.microsoft.com/nl-nl/windows/wsl/wsl2-kernel
 
