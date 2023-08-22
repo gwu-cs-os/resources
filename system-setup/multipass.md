@@ -2,7 +2,7 @@
 
 The suggested toolkit for Mac and Linux users is Multipass, a command line tool provided by Canonical that simplifies installation of Ubuntu LTS images.
 
-If you are running Ubuntu 20 LTS as your host environment and have stock compiler versions, you may run the xv6 environment natively. In this case, skip installation of Multipass, SSH key generation, everything in _Setup your Multipass VM_, and everything is _Connect VSCode to your Multipass VM_, resuming with the steps in _Setup xv6_
+If you are running Ubuntu 22 LTS as your host environment and have stock compiler versions, you may run the xv6 environment natively. In this case, skip installation of Multipass, SSH key generation, everything in _Setup your Multipass VM_, and everything is _Connect VSCode to your Multipass VM_, resuming with the steps in _Setup xv6_
 
 ## Minimum Requirement
 
@@ -18,9 +18,12 @@ If you are running Ubuntu 20 LTS as your host environment and have stock compile
 
 -   KVM and the ability to support snapd
 
+Note that if you're already running Ubuntu, there is no reason to do anything more!
+Just use your own system.
+
 ## Installation Instructions
 
-If you want to use your own technique to install a VM with Ubuntu 20 LTS, feel free to.
+If you want to use your own technique to install a VM with Ubuntu 22 LTS, feel free to.
 If want a guided means of doing so, see below.
 Note, we're still looking for a way to do this with Apple M1 chips.
 
@@ -54,10 +57,10 @@ Note, we're still looking for a way to do this with Apple M1 chips.
 
     ```bash
     cd ~
-    multipass launch -n primary -c 4 -m 1500M --cloud-init primary-config.yaml 20.04
+    multipass launch -n primary -c 4 -m 1500M --cloud-init primary-config.yaml 22.04
     ```
 
-6. You now have a Ubuntu 20 LTS VM named primary with a default user named ubuntu. Run `multipass list` to see that this is currently running and that it is the only VM listed.
+6. You now have a Ubuntu 22 LTS VM named primary with a default user named ubuntu. Run `multipass list` to see that this is currently running and that it is the only VM listed.
 10. Enter the guest by running `multipass shell`
 11. Confirm that your VM has multiple virtual processors by running `lscpu`. Among others things, you should see:
     ```
