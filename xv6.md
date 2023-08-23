@@ -7,7 +7,7 @@ I believe others have gotten `qemu` executing in OSX as well (but it takes insta
 ```
 $ git clone https://github.com/gparmer/gwu-xv6.git xv6
 $ cd xv6
-$ make qemu
+$ make qemu-nox
 ```
 
 Note that the `xv6` book has a great overview of the design of the *entire* system.
@@ -100,3 +100,6 @@ make: ./sign.pl: Command not found
 If the error it reports has a `^M` in it, you have somehow copied some of the `xv6` files through Windows, which uses [CR/LF newlines](https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/).
 Linux (i.e. WSL) doesn't understand these newlines.
 To update the `sign.pl` file to have proper Linux newlines, you can (install and) use the `dos2unix` program: `dos2unix sign.pl` which removes the `^M` newline.
+
+## Exiting QEMU
+Use `CTRL+A`, then `X` to quit xv6 and return to your terminal.
