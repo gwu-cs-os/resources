@@ -1,3 +1,136 @@
+# Running `xv6` on Mac, Linux and Windows
+
+This guide will help you set up and run the RISC-V version of xv6 on both Mac and Linux systems.
+
+## Prerequisites
+
+Ensure that you have the following tools installed on your system:
+
+- **Git**: For cloning the xv6 repository.
+- **QEMU**: An emulator for running xv6.
+- **RISC-V GNU Toolchain**: Required for building xv6.
+- **WSL**: Windows Subsystem for Linux. (on Windows)
+
+## Setup for macOS (Intel and ARM)
+
+### Step 1: Install Homebrew (if not already installed)
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Step 2: Install Required Tools
+```bash
+brew install qemu
+brew tap riscv/riscv
+brew install riscv-tools
+```
+
+### Step 3: Clone the xv6-riscv Repository
+```bash
+git clone https://github.com/mit-pdos/xv6-riscv.git
+cd xv6-riscv
+```
+
+### Step 4: Build xv6
+```bash 
+make
+```
+
+### Step 5: Run xv6 in QEMU
+```bash 
+make qemu
+```
+
+## Setup for Linux
+
+### Step 1: Install Required Tools with `apt`
+
+For Ubuntu or Debian-based systems, you can install the necessary packages using `apt`:
+
+```bash
+sudo apt update
+sudo apt install gcc-riscv64-unknown-elf gdb-multiarch qemu-system-misc build-essential
+```
+
+### Step 2: Clone the xv6-riscv Repository
+```bash
+git clone https://github.com/mit-pdos/xv6-riscv.git
+cd xv6-riscv
+```
+
+### Step 3: Build xv6
+```bash 
+make
+```
+
+### Step 4: Run xv6 in QEMU
+```bash 
+make qemu
+```
+
+## Setup for Windows using WSL
+### Step 1: Set Up WSL
+
+1. **Enable WSL**: Open PowerShell as Administrator and run:
+    ```powershell
+    wsl --install
+    ```
+
+2. **Install a Linux Distribution**: By default, Ubuntu is installed. If you want to install a different distribution, you can specify it:
+    ```powershell
+    wsl --install -d <DistributionName>
+    ```
+
+3. **Update WSL**: Make sure your WSL version is up to date:
+    ```powershell
+    wsl --update
+    ```
+
+4. **Launch WSL**: Open Ubuntu (or your installed distribution) from the Start menu.
+
+### Step 2: Install Required Tools in WSL
+
+Once inside your WSL environment, install the necessary tools:
+
+```bash
+sudo apt update
+sudo apt install gcc-riscv64-unknown-elf gdb-multiarch qemu-system-misc build-essential
+```
+
+### Step 3: Clone the xv6-riscv Repository
+```bash
+git clone https://github.com/mit-pdos/xv6-riscv.git
+cd xv6-riscv
+```
+
+### Step 4: Build xv6
+```bash 
+make
+```
+
+### Step 5: Run xv6 in QEMU
+```bash 
+make qemu
+```
+
+## Verifying xv6 Setup
+
+Follow these steps to verify that xv6 is running correctly:
+
+### Step 1: Boot into xv6
+
+Assuming everything has been set up and built properly, you should be able to boot into xv6, which is an operating system modeled after version 6 of Bell Labs Research Unix.
+
+### Step 2: Display the README
+Once you’re in xv6, display the contents of the `README` file by running the following command: 
+```bash 
+cat README
+```
+This command should print the contents of the `README` file to the console.
+
+### Step 3: Exit xv6
+Exit xv6 by hitting ctrl+a (releasing both keys) and x.
+
 # `xv6` hints and tricks
 
 To run `xv6`, you need `qemu` installed.
