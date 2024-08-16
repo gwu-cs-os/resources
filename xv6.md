@@ -133,34 +133,28 @@ Exit xv6 by hitting ctrl+a (releasing both keys) and x.
 
 # `xv6` hints and tricks
 
-To run `xv6`, you need `qemu` installed.
-If you aren't running Linux, then you might execute Linux in a virtual machine (e.g. using Virtual Box or VMWare Workstation), and `qemu` within Linux.
-I believe others have gotten `qemu` executing in OSX as well (but it takes installing a cross-compiled ELF-version of `gcc`), so discuss on Piazza if you're interested in that.
-
-```
-$ git clone https://github.com/gparmer/gwu-xv6.git xv6
-$ cd xv6
-$ make qemu-nox
-```
+**Documentation.**
 
 Note that the `xv6` book has a great overview of the design of the *entire* system.
-Please use it [as a resource](https://pdos.csail.mit.edu/6.828/2018/xv6/book-rev11.pdf) if you need it.
+Please use it [as a resource](https://github.com/gwu-cs-os/xv6-riscv/blob/riscv/xv6-book.pdf) if you need it.
 Note that since you don't own this repo, you cannot `git push` to it.
 You have to fork it on `github` to become the owner of your own fork.
 For this class, all assignments will be completed on repos that we provide for you.
 
 **Some hints for understanding the code-base.**
-All code that runs in user-level is in the files that correspond to the entries of [`UPROGS`](https://github.com/gparmer/gwu-xv6/blob/master/Makefile#L161-L176), and all of the header files that they include.
-The rest of the code executes in the kernel.
-Thus to add a new program, you only need to provide the `.c` file, and add it in a similar manner to `UPROGS`.
+The source has a few different types of software:
+
+- The kernel: in `kernel/` with all of the objects listed in the [Makefile](https://github.com/gwu-cs-os/xv6-riscv/blob/riscv/Makefile#L4).
+- The user-level applications: in `user/` with the objects also listed in the [Makefile](https://github.com/gwu-cs-os/xv6-riscv/blob/riscv/Makefile#L125).
+- The librarys linked into every user-level applications are the files listed in the [Makefile](https://github.com/gwu-cs-os/xv6-riscv/blob/riscv/Makefile#L97).
 
 When you're looking at a `.c` or `.h` file, always make sure you understand if it is executing in user-space (thus must make a system call to enter the kernel), or is in the kernel (thus can directly call functions within the kernel).
 Using a code indexing system will make it easier to walk through the source code.
-`ggtags` or `ctags` for emacs does great, but there are corresponding technologies for nearly all editors.
+`ggtags` or `ctags` for emacs does great, but there are corresponding technologies for nearly all editors (and can be generated with [`make tags`](https://github.com/gwu-cs-os/xv6-riscv/blob/riscv/Makefile#L94)).
 
 ## Adding new files
 
-- When you want to add a user-level program, you simply implement it as a `.c` file, and add it, appropriately, to the list of `UPROGS` in the `Makefile`.
+- When you want to add a user-level program, you simply implement it as a `.c` file in `user/`, and add it, appropriately, to the list of `UPROGS` in the `Makefile`.
 - When you want create a library (a `.c` file in `xv6`) that is compiled into each program, add it, appropriately, to the list of `ULIB` in the `Makefile`.
 - If you want to add a new file -- for example, `new.txt` -- to the root file system (i.e. a file you can use to open, cat, etc...), you do the following (as another resource, see [this](https://stackoverflow.com/questions/47250441/add-a-generic-file-in-xv6-makefile)):
 
