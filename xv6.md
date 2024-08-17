@@ -27,7 +27,7 @@ brew install riscv-tools
 
 ### Step 3: Clone the xv6-riscv Repository
 ```bash
-git clone https://github.com/mit-pdos/xv6-riscv.git
+git clone git@github.com:gwu-cs-os/xv6-riscv.git
 cd xv6-riscv
 ```
 
@@ -54,7 +54,7 @@ sudo apt install gcc-riscv64-unknown-elf gdb-multiarch qemu-system-misc build-es
 
 ### Step 2: Clone the xv6-riscv Repository
 ```bash
-git clone https://github.com/mit-pdos/xv6-riscv.git
+git clone git@github.com:gwu-cs-os/xv6-riscv.git
 cd xv6-riscv
 ```
 
@@ -99,7 +99,7 @@ sudo apt install gcc-riscv64-unknown-elf gdb-multiarch qemu-system-misc build-es
 
 ### Step 3: Clone the xv6-riscv Repository
 ```bash
-git clone https://github.com/mit-pdos/xv6-riscv.git
+git clone git@github.com:gwu-cs-os/xv6-riscv.git
 cd xv6-riscv
 ```
 
