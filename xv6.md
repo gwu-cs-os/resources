@@ -133,7 +133,17 @@ Exit xv6 by hitting ctrl+a (releasing both keys) and x.
 
 # `xv6` hints and tricks
 
-**Documentation.**
+## Formatting
+
+It is important to properly indent, and to consistently format your code.
+We've helped with this by providing a formatting file that encodes the repo's style.
+You should run it before `commit`ing with:
+
+```
+$ sh format.sh
+```
+
+## Documentation
 
 Note that the `xv6` book has a great overview of the design of the *entire* system.
 Please use it [as a resource](https://github.com/gwu-cs-os/xv6-riscv/blob/riscv/xv6-book.pdf) if you need it.
