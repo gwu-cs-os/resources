@@ -13,6 +13,8 @@ Ensure that you have the following tools installed on your system:
 
 ## Setup for macOS (Intel and ARM)
 
+### Step 0: Please update your Mac to macOS Sonoma (version 14).
+
 ### Step 1: Install Homebrew (if not already installed)
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -78,7 +80,7 @@ make qemu
 
 2. **Install a Linux Distribution**: By default, Ubuntu is installed. If you want to install a different distribution, you can specify it:
     ```powershell
-    wsl --install -d <DistributionName>
+    wsl --install -d Ubuntu-24.04
     ```
 
 3. **Update WSL**: Make sure your WSL version is up to date:
