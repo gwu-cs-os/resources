@@ -82,13 +82,17 @@ make qemu
     ```powershell
     wsl --install -d Ubuntu-24.04
     ```
+	We will be using `Ubuntu-24.04` to run xv6 riscv
 
 3. **Update WSL**: Make sure your WSL version is up to date:
     ```powershell
     wsl --update
     ```
 
-4. **Launch WSL**: Open Ubuntu (or your installed distribution) from the Start menu.
+4. **Launch WSL**: Open Ubuntu-24.04 from the Start menu.
+	```powershell
+	wsl -d Ubuntu-24.04
+	```
 
 ### Step 2: Install Required Tools in WSL
 
@@ -199,29 +203,6 @@ Sometimes it is necessary to increase `BSIZE` as well.
 
 Please see [this section on xv6](https://github.com/gwu-cs-os/resources/blob/master/gdb.md#xv6-specific-stuff) in the gdb resources.
 
-## Executing main() in xv6
-
-When executing a C program in a Linux system, an executable file (ELF) is created after compiling. In this file, there is a pointer to the `_start()` function which serves as the entry point for the program. This function calls `main()` and `exit()` once `main()` has returned after executing. This is why, in Linux, we can simply do: 
-```
-int main()
-{
-	return 0;
-}
-```
-and our process will be terminated via the "hidden" `_start()` function. However, in xv6, we do not have this system setup. If we try to implement the above program in xv6, we may get an error like:
-
-```
-trap 14 err 5 on cpu 1 eip 0xffffffff addr 0xffffffff--kill proc
-```
-
-To address this, we have to terminate the process ourselves, like the `_start()` function typically does for us: 
-```
-int main()
-{
-	exit();
-}
-```
-
 ## Errors running `sign.pl`
 
 If your `make` is breaking when trying to run `sign.pl`, try and run the command at which `make` breaks.
@@ -238,6 +219,8 @@ make: ./sign.pl: Command not found
 ...try running `./sign.pl bootblock`. 
 If the error it reports has a `^M` in it, you have somehow copied some of the `xv6` files through Windows, which uses [CR/LF newlines](https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/).
 Linux (i.e. WSL) doesn't understand these newlines.
+
+A simple and quick fix would be to copy the file's content from github and replace the content on your local machine. If the issue persists, then you must continue below.
 To update the `sign.pl` file to have proper Linux newlines, you can (install and) use the `dos2unix` program: `dos2unix sign.pl` which removes the `^M` newline.
 
 ## Exiting QEMU
