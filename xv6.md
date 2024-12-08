@@ -196,8 +196,7 @@ Using a code indexing system will make it easier to walk through the source code
 ## Running out of disk blocks to hold the programs and files
 
 When you add more files (e.g. test files) into the system, you may run out of blocks.
-You can increase the number of blocks in the system by increasing the `FSSIZE` variable.
-Sometimes it is necessary to increase `BSIZE` as well.
+Please go into xv6's `param.h`, and update the file system size to be larger.
 
 ## Debugging with `gdb`
 
