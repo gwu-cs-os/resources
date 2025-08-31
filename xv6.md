@@ -75,21 +75,16 @@ make qemu
 
 1. **Enable WSL**: Open PowerShell as Administrator and run:
     ```powershell
-    wsl --install
-    ```
-
-2. **Install a Linux Distribution**: By default, Ubuntu is installed. If you want to install a different distribution, you can specify it:
-    ```powershell
-    wsl --install -d Ubuntu-24.04
+    wsl --install -d Ubuntu-24.04 --no-launch
     ```
 	We will be using `Ubuntu-24.04` to run xv6 riscv
 
-3. **Update WSL**: Make sure your WSL version is up to date:
+2. **Update WSL**: Make sure your WSL version is up to date:
     ```powershell
     wsl --update
     ```
 
-4. **Launch WSL**: Open Ubuntu-24.04 from the Start menu.
+3. **Launch WSL**: Open Ubuntu-24.04 from the Start menu.
 	```powershell
 	wsl -d Ubuntu-24.04
 	```
@@ -99,6 +94,7 @@ make qemu
 Once inside your WSL environment, install the necessary tools:
 
 ```bash
+cd ~
 sudo apt update
 sudo apt install gcc-riscv64-unknown-elf gdb-multiarch qemu-system-misc build-essential
 ```
