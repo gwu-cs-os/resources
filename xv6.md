@@ -23,6 +23,7 @@ Ensure that you have the following tools installed on your system:
 ### Step 2: Install Required Tools
 ```bash
 brew install qemu
+brew trust riscv/riscv
 brew tap riscv/riscv
 brew install riscv-tools
 ```
