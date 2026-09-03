@@ -67,6 +67,9 @@ after:
 silent:
     @echo "After"
 
+all:
+	@echo "Where in the World is Carmen Sandiego?"
+
 build: main.c
     @gcc main.c
 ```
